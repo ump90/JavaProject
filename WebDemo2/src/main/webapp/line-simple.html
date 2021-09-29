@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript"
+            src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <link rel="stylesheet"
+          href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-9">
+
+            <div class="card bg-light text-dark">
+                <div class="card-body">
+                    <h3>BTCUSDT</h3>
+                    <div id="diagram" style=" min-width: 100%; height:500px;">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-light text-dark">
+                <div class="card-body">
+                    <h3 id="currentPrice" style="text-align:center;">
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    const dom = document.getElementById("diagram");
+    const myChart = echarts.init(dom);
+    const app = {};
+
+    let option;
+    const timeList = [];
+    const priceList = [];
+    option = {
+        xAxis: {
+            // type: 'category',
+            data: timeList,
+            scale: true
+        },
+        yAxis: {
+            type: 'value',
+            scale: true
+        },
+        series: [{
+            type: 'line',
+            data: priceList,
+            hoverAnimation: false,
+            smooth: true
+
+        }]
+    };
+
+    function myTimer(price) {
+        const d = new Date();
+        const t = d.toLocaleTimeString();
+        const formatePrice = price.toString().match(/^\d+(?:\.\d{0,2})?/);
+        // var formatePrice = price;
+        priceList.push(Number(formatePrice));
+        timeList.push(t);
+        document.getElementById("currentPrice").innerHTML = formatePrice;
+
+        if (priceList.length > 60 * 60 * 24 * 3) {
+            priceList.shift();
+            timeList.shift();
+        }
+    }
+
+    setInterval(function () {
+        $.get("https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT", function (data, status) {
+            myTimer(data["price"]);
+            option && myChart.setOption(option);
+        });
+    }, 1000);
+
+</script>
+</body>
+
+</html>

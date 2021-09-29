@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="WebDemo4:war exploded" />
+    </artifacts-to-build>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ed196dd1-f02e-4005-af62-a76e656b65f6" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../SpringProject2/src/main/java/com/itheima/spring/App2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SpringProject2/src/main/java/com/itheima/spring/config/JdbcConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SpringProject2/src/main/java/com/itheima/spring/config/MybatisConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SpringProject2/src/main/java/com/itheima/spring/config/SpringConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SpringProject2/src/main/java/com/itheima/spring/dao/UserDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SpringProject2/src/main/java/com/itheima/spring/pojo/Book.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SpringProject2/src/main/java/com/itheima/spring/pojo/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SpringProject2/src/main/java/com/itheima/spring/service/BookService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SpringProject2/src/main/java/com/itheima/spring/service/BookServiceImplement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SpringProject2/src/main/java/com/itheima/spring/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SpringProject2/src/main/java/com/itheima/spring/service/UserServiceImp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SpringProject2/src/main/resources/jdbc.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../WebApplication01/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringProject1/src/main/java/com/itheima/ump90/BookDaoImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringProject1/src/main/java/com/itheima/ump90/BookDaoImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringProject1/src/main/java/com/itheima/ump90/BookServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringProject1/src/main/java/com/itheima/ump90/BookServiceImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringProject1/src/main/resources/ApplicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringProject1/src/main/resources/ApplicationContext.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringProject2/src/main/java/com/itheima/spring/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringProject2/src/main/java/com/itheima/spring/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringProject2/src/main/resources/ApplicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringProject2/src/main/resources/ApplicationContext.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringProject2/src/main/resources/jdbc.propoties" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="jsf" />
+        <option value="Jsp File" />
+        <option value="HTML File" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$MAVEN_REPOSITORY$/javax/servlet/javax.servlet-api/4.0.1/javax.servlet-api-4.0.1-sources.jar!/javax/servlet/http/HttpServlet.java" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="C:\Users\Administrator\.m2\repository" />
+        <option name="userSettingsFile" value="C:\Users\Administrator\.m2\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1yMDpVen7DhjaGu2xPjJDZpWfFc" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../WebDemo3" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Facets" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.41753927" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\JavaProject\WebDemo4\src\main\webapp" />
+      <recent name="D:\Projects\webdemo4\src\main\resources\com\itheima\edu\mapper" />
+      <recent name="D:\Projects\webdemo4\src\main\java\com\itheima\edu\mapper" />
+      <recent name="D:\Projects\webdemo4\src\main\java\com\itheima\edu\pojo" />
+      <recent name="D:\Projects\webdemo4\src\main\webapp" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Projects\webdemo4\src\main\resources" />
+      <recent name="D:\Projects\webdemo4\src\main\webapp\js" />
+      <recent name="D:\Projects\webdemo4\src\main\webapp" />
+      <recent name="D:\Projects\webdemo4\src\main\java\com\itheima\edu\utils" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Tomcat Server.Tomcat 8.5.70">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.itheima.edu.Main" />
+      <module name="webdemo4" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.itheima.edu.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="sqlTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="test.sqlTest" />
+      <module name="WebDemo4" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Tomcat 8.5.70" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.70" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="OPEN_IN_BROWSER_URL" value="http://matrix:8080/WebDemo4_war_exploded/" />
+      <option name="BROWSER_ID" value="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" />
+      <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
+      <deployment>
+        <artifact name="WebDemo4:war exploded">
+          <settings>
+            <option name="CONTEXT_PATH" value="/WebDemo4_war_exploded" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="45fa19f2-d0ca-4632-9bbf-4d9805d153df" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="57799" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Profile">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="WebDemo4:war exploded" />
+        </option>
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.sqlTest" />
+      <item itemvalue="Tomcat Server.Tomcat 8.5.70" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.sqlTest" />
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ed196dd1-f02e-4005-af62-a76e656b65f6" name="Changes" comment="" />
+      <created>1632052747480</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1632052747480</updated>
+      <workItem from="1632052748639" duration="1298000" />
+      <workItem from="1632054064209" duration="3825000" />
+      <workItem from="1632058986426" duration="108000" />
+      <workItem from="1632059122376" duration="1387000" />
+      <workItem from="1632063833127" duration="977000" />
+      <workItem from="1632066091477" duration="1342000" />
+      <workItem from="1632067485068" duration="44000" />
+      <workItem from="1632067556082" duration="362000" />
+      <workItem from="1632096528944" duration="8438000" />
+      <workItem from="1632106966080" duration="17389000" />
+      <workItem from="1632269784420" duration="6653000" />
+      <workItem from="1632279847994" duration="3542000" />
+      <workItem from="1632288171700" duration="94000" />
+      <workItem from="1632289966923" duration="295000" />
+      <workItem from="1632290295155" duration="19768000" />
+      <workItem from="1632357466554" duration="4361000" />
+      <workItem from="1632361880672" duration="7541000" />
+      <workItem from="1632375777890" duration="13360000" />
+      <workItem from="1632392170376" duration="2482000" />
+      <workItem from="1632396441992" duration="7681000" />
+      <workItem from="1632448738704" duration="870000" />
+      <workItem from="1632475182540" duration="193000" />
+      <workItem from="1632476890046" duration="966000" />
+      <workItem from="1632477886507" duration="444000" />
+      <workItem from="1632492441359" duration="170000" />
+      <workItem from="1632492651800" duration="1386000" />
+      <workItem from="1632528929143" duration="342000" />
+      <workItem from="1632529313451" duration="12101000" />
+      <workItem from="1632548907645" duration="2857000" />
+      <workItem from="1632551839746" duration="2333000" />
+      <workItem from="1632555049861" duration="4927000" />
+      <workItem from="1632564284026" duration="8315000" />
+      <workItem from="1632584301176" duration="6623000" />
+      <workItem from="1632615759540" duration="27579000" />
+      <workItem from="1632704742868" duration="3102000" />
+      <workItem from="1632711081880" duration="3438000" />
+      <workItem from="1632722417624" duration="390000" />
+      <workItem from="1632747628569" duration="32000" />
+      <workItem from="1632910670929" duration="198000" />
+    </task>
+    <task id="LOCAL-00001" summary="Test vue">
+      <created>1632397246862</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1632397246862</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Add the function of show the data on table based on vue &amp; ajax.">
+      <created>1632402869486</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1632402869486</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Add BrandServlet and the function of search">
+      <created>1632551356496</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1632551356496</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Add the function of adding brands.">
+      <created>1632576318176</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1632576318176</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Fix the bug in search and pagination function.&#10;Add the edit function.">
+      <created>1632651538861</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1632651538861</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Fix the bug of search function &amp; add the Spring Project">
+      <created>1632708454886</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1632708454901</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <MESSAGE value="Test vue" />
+    <MESSAGE value="Add the function of show the data on table based on vue &amp; ajax." />
+    <MESSAGE value="Add BrandServlet and the function of search" />
+    <MESSAGE value="Add the function of adding brands." />
+    <MESSAGE value="Fix the bug in search and pagination function.&#10;Add the edit function." />
+    <MESSAGE value="Fix the bug of search function &amp; add the Spring Project" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix the bug of search function &amp; add the Spring Project" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

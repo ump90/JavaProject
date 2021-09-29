@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.mapper.BrandMapper">
+    <insert id="insert">insert into brand (id, brand_name, company_name, ordered, status, description)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.id},#{item.brandName},#{item.companyName},#{item.order},#{item.status},#{item.brandDescription})
+        </foreach>
+    </insert>
+    <update id="updateBrand">update brand
+        <set>
+            <if test="brandName!=null and brandName!=''">
+                brand_name=#{brandName},
+            </if>
+            <if test="companyName!=null and companyName!=''">
+                company_name=#{companyName},
+            </if>
+            <if test="order!=null and order!=0">
+                ordered=#{order},
+            </if>
+            <if test="status!=null">
+                status=#{status},
+            </if>
+            <if test="brandDescription!=null and brandDescription!=''">
+                brandDescription=#{brandDescription}
+            </if>
+        </set>
+        <where>
+            id=#{id};
+        </where>
+
+
+    </update>
+    <delete id="delById">delete from brand where id in
+        <foreach collection="array" separator="," item="item" open="(" close=")">
+            #{item}
+        </foreach>
+    </delete>
+    <select id="selectAll" resultSets="com.itheima.pojo.Brand" resultMap="brandResultMap">select *
+                                                                                          from brand;</select>
+    <select id="login" resultType="integer">select count(*)
+                                            from user2
+                                            where email = #{param1}
+                                              and password = #{param2};</select>
+    <select id="getUserpassword" resultType="java.lang.String"> select password
+                                                                from user2
+                                                                where email = #{param1}</select>
+    <resultMap id="brandResultMap" type="com.itheima.pojo.Brand">
+        <result property="brandName" column="brand_name"/>
+        <result property="companyName" column="company_name"/>
+        <result property="brandDescription" column="description"/>
+        <result property="order" column="ordered"/>
+
+    </resultMap>
+</mapper>

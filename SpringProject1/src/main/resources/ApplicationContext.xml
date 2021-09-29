@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-beans.xsd">
+    <!--    <bean id="bookDao" class="com.itheima.ump90.BookDao" factory-method="getBookDao"/>-->
+    <!--    <bean id="bookDao" class="com.itheima.ump90.BookDaoFactory2" factory-bean="bookDaoFactory2" factory-method="getBookDao"/>-->
+    <!--    <bean id="bookDaoFactory2" class="com.itheima.ump90.BookDaoFactory2"/>-->
+    <!--    <bean id="bookService" class="com.itheima.ump90.BookServiceImp">-->
+    <!--        <property name="bookDao" ref="bookDao"/>-->
+    <!--    </bean>-->
+    <!--    <bean id="bookDao" class="com.itheima.ump90.BookDaoFactoryBean"/>-->
+    <context:component-scan base-package="com.itheima"/>
+
+</beans>

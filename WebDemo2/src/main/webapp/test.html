@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+<form>
+    <label for="userName" id="userNameLabel" style="color:#000000">user</label>
+    <input type="text" id="userName"><br>
+    <label for="password">pass</label>
+    <input type="text" id="password"><br>
+    <input type="submit" id="submit">
+
+</form>
+<script>
+    var userNameInput = document.getElementById("userName");
+    userNameInput.onblur = function () {
+        var inputValue = userNameInput.value.trim();
+        if (inputValue.length < 6 || inputValue.length > 12) {
+            alert("The username is not correct");
+            document.getElementById("userNameLabel").style.color = "red";
+        }
+    }
+</script>
+</body>
+
+</html>

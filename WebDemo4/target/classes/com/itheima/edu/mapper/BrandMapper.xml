@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.edu.mapper.BrandMapper">
+
+
+    <resultMap id="brandResultMap" type="com.itheima.edu.pojo.Brand">
+        <result property="brandName" column="brand_name"/>
+        <result property="companyName" column="company_name"/>
+    </resultMap>
+    <insert
+            id="insertAll">
+        insert into tb_brand
+            (brand_name, company_name, ordered, description, status)
+        values (#{brandName}, #{companyName}, #{ordered}, #{description},
+                #{status})
+    </insert>
+    <update id="updateById">
+        update tb_brand
+        set brand_name=#{brandName},
+            company_name=#{companyName},
+            ordered=#{ordered},
+            description=#{description},
+            status=#{status}
+        where id = #{id};
+    </update>
+
+    <delete id="delByIds">
+        delete
+        from tb_brand
+        where id in
+        <foreach collection="array" open="(" close=")" separator="," item="item">
+            #{item}
+        </foreach>
+        ;
+    </delete>
+
+    <select id="listAllById" resultMap="brandResultMap">
+        select *
+        from tb_brand limit #{startPage},#{pageSize};
+
+    </select>
+
+    <select id="selectByIdBrand" resultType="com.itheima.edu.pojo.Brand"
+            resultMap="brandResultMap">
+        select *
+        from tb_brand
+        where id = #{id}
+    </select>
+
+    <select id="searchAll" resultMap="brandResultMap">
+        select *
+        from tb_brand
+        <where>
+            <if test="status!=null and status !=-1">
+                status=#{status}
+            </if>
+
+            <if test="brandName!=null and brandName!=''">
+                and brand_name like CONCAT("%",#{brandName},"%")
+            </if>
+            <if test="companyName!=null and companyName!=''">
+                and company_name like CONCAT("%",#{companyName},"%")
+            </if>
+        </where>
+        limit #{startPage},#{pageSize};
+
+
+    </select>
+    <select id="getPage" resultType="java.lang.Integer">
+        select count(*)
+        from tb_brand
+        <where>
+            <if test="status!=null and status !=-1">
+                status=#{status}
+            </if>
+
+            <if test="brandName!=null and brandName!=''">
+                and brand_name like CONCAT("%",#{brandName},"%")
+            </if>
+            <if test="companyName!=null and companyName!=''">
+                and company_name like CONCAT("%",#{companyName},"%")
+            </if>
+        </where>
+
+    </select>
+
+</mapper>

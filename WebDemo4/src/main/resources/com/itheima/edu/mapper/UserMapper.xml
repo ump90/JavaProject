@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.edu.mapper.UserMapper">
+    <insert id="insertUser">insert into user3 (username, password) value (#{param1},#{param2});</insert>
+
+    <select id="selectUser" resultType="com.itheima.edu.pojo.User"> select *
+                                                                    from user3
+                                                                    where username = #{param1}
+                                                                      and password = #{param2};</select>
+    <select id="selectAll" resultType="com.itheima.edu.pojo.User"> select *
+                                                                   from user3;</select>
+</mapper>

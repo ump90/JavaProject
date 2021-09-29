@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.edu.mapper.WebMapper">
+    <insert id="addUser">
+        insert into managers (user, password)
+        values (#{user}, #{password});
+
+    </insert>
+    <select id="selectAll" resultMap="User">select *
+                                            from emp;</select>
+
+    <select id="queryByUserAndPass" resultType="com.itheima.edu.pojo.Manager"> select *
+                                                                               from managers
+                                                                               where user = #{user}
+                                                                                 and password = #{password};</select>
+    <select id="queryByName" resultType="com.itheima.edu.pojo.Manager">select *
+                                                                       from emp
+                                                                       where user = #{user}</select>
+    <resultMap id="User" type="User">
+        <id property="id" column="id"/>
+        <result property="name" column="NAME"/>
+        <result property="dept_id" column="dept_id"/>
+        <result property="gender" column="gender"/>
+        <result property="joinDate" column="join_date"/>
+        <result property="salary" column="salary"/>
+    </resultMap>
+
+</mapper>
