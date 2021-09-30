@@ -6,6 +6,14 @@ import org.springframework.stereotype.Repository;
 public class User {
     private String id;
     private String username;
-    private  String password;
+    private  String money;
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + money + '\'' +
+                '}';
+    }
 }
