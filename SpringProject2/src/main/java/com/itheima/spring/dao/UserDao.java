@@ -25,4 +25,7 @@ public interface UserDao {
 
   @Select("select * from tbl_account;")
   List<User> listUser();
+
+  @Select("select * from tbl_account where id=#{id}")
+  User getUserById(int id);
 }

@@ -35,4 +35,10 @@ public class UserServiceImp implements UserService {
   public int findUser(User user) {
     return userDao.findUser(user);
   }
+
+  @Override
+  public User getUserById(int id){
+    return  new User();
+  }
+
 }

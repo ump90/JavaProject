@@ -9,5 +9,6 @@ public interface UserService {
     void updateUser(User user);
     List<User> listAllUser();
     int findUser(User user);
+    User getUserById(int id);
 
 }
