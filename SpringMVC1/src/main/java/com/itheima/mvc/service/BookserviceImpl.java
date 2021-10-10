@@ -35,9 +35,9 @@ public class BookserviceImpl implements BookService {
 
   @Override
   public Book getBook(int id) {
-    if (id<0){
-      throw new BusinessException(Code.ADD_ERROR,"test exception");
-    }
+//    if (id<0){
+//      throw new BusinessException(Code.ADD_ERROR,"test exception");
+//    }
 
     return bookDao.selectById(id);
   }

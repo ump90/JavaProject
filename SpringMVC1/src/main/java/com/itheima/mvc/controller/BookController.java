@@ -15,22 +15,25 @@ public class BookController {
   @Autowired private BookService bookService;
 
   @GetMapping
-  public Result listBooks() {
+  public Result listBooks() throws Exception {
     List<Book> list=bookService.listAllBooks();
+
     if(list !=null){
       return new Result(Code.GET_OK,"Success",list);
     }else {
-      return new Result(Code.GET_ERROR,"Error", null);
+      throw new Exception();
+//      return new Result(Code.GET_ERROR,"Error", null);
     }
   }
 
   @GetMapping("/{id}")
-  public Result getById(@PathVariable int id) {
+  public Result getById(@PathVariable int id) throws Exception {
     Book book=bookService.getBook(id);
     if(book!=null){
       return new Result(Code.GET_OK,"Success",book);
     }else {
-      return new Result(Code.GET_ERROR,"Error",null);
+      throw new Exception();
+//      return new Result(Code.GET_ERROR,"Error",null);
     }
 
   }

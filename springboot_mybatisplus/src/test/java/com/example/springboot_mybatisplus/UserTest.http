@@ -1,0 +1,45 @@
+POST http://localhost:8080/api/user
+Content-Type: application/json
+
+{
+  "name": "张大炮2",
+  "password": "123456",
+  "age": 161,
+  "tel": "12345678910"
+}
+
+###
+GET http://localhost:8080/api/user
+Accept: application/json
+
+
+###
+GET http://localhost:8080/api/user/1
+Accept: application/json
+
+###
+PUT http://localhost:8080/api/user
+Content-Type: application/json
+
+{
+  "name": "张大炮3",
+  "password": "123456",
+  "age": 161,
+  "tel": "12345678910",
+  "id" : 9
+}
+
+###
+DELETE http://localhost:8080/api/user/8
+
+###
+POST http://localhost:8080/api/search
+Content-Type: application/json
+
+{
+  "name": "张大炮3",
+  "password": "123456",
+  "age": null,
+  "tel": "12345678910",
+  "id" : null
+}
