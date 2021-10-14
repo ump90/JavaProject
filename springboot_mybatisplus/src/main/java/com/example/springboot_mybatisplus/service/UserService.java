@@ -2,6 +2,7 @@ package com.example.springboot_mybatisplus.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.example.springboot_mybatisplus.bean.User;
+
 import com.example.springboot_mybatisplus.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

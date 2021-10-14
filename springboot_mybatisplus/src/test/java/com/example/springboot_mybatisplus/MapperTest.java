@@ -48,6 +48,19 @@ public class MapperTest {
     }
 
     @Test
+    public void lockTest(){
+        User user = userDao.selectById(3);       //version=3
+        User user2 = userDao.selectById(3);    //version=3
+        user2.setName("Jock aaa");
+        userDao.updateById(user2);
+
+        //version=>4
+        user.setName("Jock bbb");
+        user.setVersion(2);
+        userDao.updateById(user);
+    }
+
+    @Test
     public void UserDaoTest(){
         QueryWrapper<User> userQueryWrapper=new QueryWrapper<>();
         userQueryWrapper.eq("id",1);
