@@ -30,14 +30,17 @@ public class Employee implements Serializable {
     private String sex;
     private String idNumber;
     private int status;
-
+    @JsonSerialize(using= ToStringSerializer.class)
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
-
+    @JsonSerialize(using= ToStringSerializer.class)
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateTime;
-
+    @JsonSerialize(using= ToStringSerializer.class)
+    @TableField(fill = FieldFill.INSERT)
     private long updateUser;
+    @JsonSerialize(using= ToStringSerializer.class)
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private long createUser;
 
 

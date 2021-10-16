@@ -34,5 +34,10 @@ public class CategoryController {
         return categoryService.deleteCategory(id);
     }
 
+    @GetMapping("/list")
+    public CommonReturn<?> list(Long type){
+        return categoryService.list(type);
+    }
+
 
 }

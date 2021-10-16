@@ -32,7 +32,7 @@ public class EmployeeController {
 
     @PostMapping
     public CommonReturn<?> addEmployee(ServletRequest request, @RequestBody Employee employee) {
-        return employeeService.addEmployee( employee);
+        return employeeService.addEmployee(employee);
     }
 
     @GetMapping("/page")
@@ -48,7 +48,6 @@ public class EmployeeController {
     @GetMapping("/{id}")
     public CommonReturn<?> getEmployeeById(@PathVariable Long id) {
         return employeeService.getEmployeeById(id);
-
     }
 
 

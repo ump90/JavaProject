@@ -3,13 +3,13 @@ package com.itheima.reggie_take_out.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.itheima.reggie_take_out.common.BaseContext;
 import com.itheima.reggie_take_out.common.CommonReturn;
 import com.itheima.reggie_take_out.entity.Employee;
 import com.itheima.reggie_take_out.mapper.EmployeeMapper;
 import com.itheima.reggie_take_out.service.EmployeeService;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
+
 import javax.servlet.http.HttpServletRequest;
 import java.nio.charset.StandardCharsets;
 
@@ -54,11 +54,8 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper,Employee> im
 
         String initialPassword = DigestUtils.md5DigestAsHex("123456".getBytes(StandardCharsets.UTF_8));
         employee.setPassword(initialPassword);
-        Long creatorId = BaseContext.getId();
-        employee.setCreateUser(creatorId);
-        employee.setUpdateUser(creatorId);
         employee.setStatus(1);
-        BaseContext.close();
+
         if (this.save(employee)) {
             return CommonReturn.success("添加employee成功");
         } else {
@@ -78,9 +75,6 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper,Employee> im
     @Override
     public CommonReturn<?> updateEmployee(Employee employee) {
 
-        Long updatorId = BaseContext.getId();
-        employee.setUpdateUser(updatorId);
-        BaseContext.close();
         if (this.updateById(employee)) {
             return CommonReturn.success("更新Employee信息成功");
         } else {

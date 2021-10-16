@@ -57,7 +57,7 @@ public class loginCheckFilter implements Filter {
             }else {
                 log.info("URI: "+requestURI+" 未登录，拦截请求");
                 response.setContentType("application/json;charset=utf-8");
-                response.getWriter().println(JSON.toJSONString(CommonReturn.error("未登录")));
+                response.getWriter().println(JSON.toJSONString(CommonReturn.error("NOTLOGIN")));
             }
         }
 

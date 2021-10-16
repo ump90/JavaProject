@@ -14,4 +14,5 @@ public interface CategoryService extends IService<Category> {
     CommonReturn<?> updateCategory(Category category);
     CommonReturn<?> deleteCategory(Long id);
     CommonReturn<?> addCategory(Category category);
+    CommonReturn<?> list(Long id);
 }

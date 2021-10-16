@@ -1,13 +1,15 @@
 package com.itheima.reggie_take_out.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.itheima.reggie_take_out.common.BaseContext;
 import com.itheima.reggie_take_out.common.CommonReturn;
 import com.itheima.reggie_take_out.entity.Category;
 import com.itheima.reggie_take_out.mapper.CategoryMapper;
 import com.itheima.reggie_take_out.service.CategoryService;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author UMP90
@@ -24,9 +26,8 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
 
     @Override
     public CommonReturn<?> addCategory(Category category) {
-        category.setCreateUser(BaseContext.getId());
-        category.setUpdateUser(BaseContext.getId());
-        BaseContext.close();
+
+
         if (this.save(category)) {
             return CommonReturn.success("新增分类成功");
         }else {
@@ -47,12 +48,19 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
 
     @Override
     public CommonReturn<?> updateCategory(Category category) {
-        category.setUpdateUser(BaseContext.getId());
-        BaseContext.close();
         if (this.updateById(category)) {
             return CommonReturn.success("更新分类成功");
         }else {
             return CommonReturn.error("更新分类失败");
         }
+    }
+
+    @Override
+    public CommonReturn<?> list(Long type) {
+        LambdaQueryWrapper<Category> lambdaQueryWrapper=new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.eq(Category::getType,type);
+        List<Category> categoryList=this.list(lambdaQueryWrapper);
+        return CommonReturn.success(categoryList);
+
     }
 }
