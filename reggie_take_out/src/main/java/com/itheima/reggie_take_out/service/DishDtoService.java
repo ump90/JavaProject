@@ -12,7 +12,7 @@ public interface DishDtoService {
     CommonReturn<?> save(DishDto dishDto);
     CommonReturn<?> saveWithFlavor(DishDto dishDto);
     CommonReturn<?> list(Integer page, Integer pageSize, String name);
-    CommonReturn<?> getByIdwithFlavor(Long id);
+    CommonReturn<?> getByIdWithFlavor(Long id);
     CommonReturn<?> updateWithFlavors(DishDto dishDto);
-    CommonReturn<?> getByCategoryId(Long categoryId);
+    CommonReturn<?> getByCategoryId(Long categoryId,Integer status);
  }

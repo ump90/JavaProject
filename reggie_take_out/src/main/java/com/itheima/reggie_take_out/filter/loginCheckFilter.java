@@ -16,11 +16,11 @@ import java.io.IOException;
  * @author UMP90
  * @date 2021/10/12
  */
-@WebFilter(filterName = "loginFilter",urlPatterns = "/*")
+@WebFilter(filterName = "loginFilter", urlPatterns = "/*")
 @Slf4j
 
 public class loginCheckFilter implements Filter {
-    public static final AntPathMatcher pathMatcher=new AntPathMatcher();
+    public static final AntPathMatcher pathMatcher = new AntPathMatcher();
 
 
     @Override
@@ -35,27 +35,37 @@ public class loginCheckFilter implements Filter {
 
         String requestURI = request.getRequestURI();
 
-        String[] unfilterUrl={
+        String[] unfilteredUrl = {
                 "/**/js/**/*",
                 "/**/images/**/*",
                 "/**/api/*.js",
                 "/**/plugins/**/*",
                 "/**/styles/**/*",
                 "/**/login/**/*",
-                "/**/employee/login"
+                "/**/login",
+                "/**/login.html",
+                "/**/fonts/**/*",
+                "/**/sendMsg"
         };
-        log.info("请求 URI:" +requestURI);
-        if(checkUrl(requestURI,unfilterUrl)){
-            log.info("URI: "+requestURI+" 不需要拦截");
-            filterChain.doFilter(request,response);
-        }else {
-            if(request.getSession().getAttribute("employee")!=null){
-                log.info("URI: "+requestURI+" 已登录，放行请求");
-                Long id=(Long) request.getSession().getAttribute("employee");
+        log.info("请求 URI:" + requestURI);
+        if (checkUrl(requestURI, unfilteredUrl)) {
+            log.info("URI: " + requestURI + " 不需要拦截");
+            filterChain.doFilter(request, response);
+        } else {
+            Long employeeId = (Long) request.getSession().getAttribute("employee");
+            Long userId = (Long) request.getSession().getAttribute("user");
+            if (employeeId != null) {
+                log.info("URI: " + requestURI + "Employee " + employeeId + " 已登录，放行请求");
+                Long id = (Long) request.getSession().getAttribute("employee");
                 BaseContext.setId(id);
-                filterChain.doFilter(request,response);
-            }else {
-                log.info("URI: "+requestURI+" 未登录，拦截请求");
+                filterChain.doFilter(request, response);
+            } else if (userId != null) {
+                log.info("URI: " + requestURI + "User " + userId + " 已登录，放行请求");
+                Long id = (Long) request.getSession().getAttribute("user");
+                BaseContext.setId(id);
+                filterChain.doFilter(request, response);
+            } else {
+                log.info("URI: " + requestURI + " 未登录，拦截请求");
                 response.setContentType("application/json;charset=utf-8");
                 response.getWriter().println(JSON.toJSONString(CommonReturn.error("NOTLOGIN")));
             }
@@ -69,11 +79,11 @@ public class loginCheckFilter implements Filter {
         Filter.super.destroy();
     }
 
-    public boolean checkUrl(String testUrl, String[] urls){
+    public boolean checkUrl(String testUrl, String[] urls) {
         System.out.println(testUrl);
         for (String url : urls) {
 
-            if(pathMatcher.match(url,testUrl)){
+            if (pathMatcher.match(url, testUrl)) {
                 return true;
             }
         }

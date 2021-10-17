@@ -9,40 +9,27 @@ import java.time.LocalDateTime;
 
 /**
  * @author UMP90
- * @date 2021/10/16
+ * @date 2021/10/17
  */
 @Data
-@TableName("setmeal_dish")
-public class SetmealDish {
+@TableName("shopping_cart")
+public class ShoppingCart {
     @JsonSerialize(using = ToStringSerializer.class)
     @TableId(type = IdType.ASSIGN_ID)
     private Long id;
+
+    private String name;
+    private String image;
+    @JsonSerialize(using = ToStringSerializer.class)
+    private Long userId;
+    @JsonSerialize(using = ToStringSerializer.class)
+    private Long dishId;
     @JsonSerialize(using = ToStringSerializer.class)
     private Long setmealId;
-    private String dishId;
-    private String name;
-    private Double price;
-    private Integer copies;
-    private Integer sort;
-
+    private String dishFlavor;
+    private Integer number;
+    private Double amount;
     @JsonSerialize(using = ToStringSerializer.class)
-    @TableField(fill = FieldFill.INSERT_UPDATE)
+    @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
-
-    @JsonSerialize(using = ToStringSerializer.class)
-    @TableField(fill = FieldFill.INSERT)
-    private LocalDateTime updateTime;
-
-    @JsonSerialize(using = ToStringSerializer.class)
-    @TableField(fill = FieldFill.INSERT_UPDATE)
-    private Long createUser;
-
-    @JsonSerialize(using = ToStringSerializer.class)
-    @TableField(fill = FieldFill.INSERT)
-    private Long updateUser;
-
-    @TableLogic
-    private Integer isDeleted;
-
-
 }

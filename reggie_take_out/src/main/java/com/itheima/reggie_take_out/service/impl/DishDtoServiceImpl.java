@@ -3,6 +3,7 @@ package com.itheima.reggie_take_out.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.itheima.reggie_take_out.common.CommonReturn;
+import com.itheima.reggie_take_out.entity.Category;
 import com.itheima.reggie_take_out.entity.Dish;
 import com.itheima.reggie_take_out.dto.DishDto;
 import com.itheima.reggie_take_out.entity.DishFlavor;
@@ -87,7 +88,7 @@ public class DishDtoServiceImpl implements DishDtoService {
     }
 
     @Override
-    public CommonReturn<?> getByIdwithFlavor(Long id) {
+    public CommonReturn<?> getByIdWithFlavor(Long id) {
         Dish dish = dishService.getById(id);
         LambdaQueryWrapper<DishFlavor> lambdaQueryWrapper = new LambdaQueryWrapper<>();
         lambdaQueryWrapper.eq(DishFlavor::getDishId, dish.getId());
@@ -120,13 +121,29 @@ public class DishDtoServiceImpl implements DishDtoService {
     }
 
     @Override
-    public CommonReturn<?> getByCategoryId(Long categoryId) {
+    public CommonReturn<?> getByCategoryId(Long categoryId, Integer status) {
         LambdaQueryWrapper<Dish> lambdaQueryWrapper = new LambdaQueryWrapper<>();
         lambdaQueryWrapper.eq(categoryId != null, Dish::getCategoryId, categoryId);
-        lambdaQueryWrapper.eq(Dish::getStatus, 1);
+        lambdaQueryWrapper.eq(Dish::getStatus, status);
         lambdaQueryWrapper.orderByAsc(Dish::getSort).orderByDesc(Dish::getUpdateTime);
         List<Dish> dishList = dishService.list(lambdaQueryWrapper);
-        return CommonReturn.success(dishList);
+
+        ArrayList<DishDto> dishDtoArrayList = new ArrayList<>();
+
+        dishList.forEach(dish -> {
+            DishDto dishDto=new DishDto();
+            BeanUtils.copyProperties(dish,dishDto);
+            Category category= categoryService.getById(dish.getCategoryId());
+            dishDto.setCategoryName(category.getName());
+            LambdaQueryWrapper<DishFlavor> dishFlavorLambdaQueryWrapper = new LambdaQueryWrapper<>();
+            dishFlavorLambdaQueryWrapper.eq(DishFlavor::getDishId, dish.getId());
+            List<DishFlavor> dishFlavorList = dishFlavorService.list(dishFlavorLambdaQueryWrapper);
+            dishDto.setFlavors(dishFlavorList);
+            dishDtoArrayList.add(dishDto);
+
+        });
+
+        return CommonReturn.success(dishDtoArrayList);
 
     }
 }

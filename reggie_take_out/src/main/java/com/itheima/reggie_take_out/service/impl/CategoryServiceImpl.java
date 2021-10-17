@@ -58,7 +58,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
     @Override
     public CommonReturn<?> list(Long type) {
         LambdaQueryWrapper<Category> lambdaQueryWrapper=new LambdaQueryWrapper<>();
-        lambdaQueryWrapper.eq(Category::getType,type);
+        lambdaQueryWrapper.eq(type!=null,Category::getType,type);
         List<Category> categoryList=this.list(lambdaQueryWrapper);
         return CommonReturn.success(categoryList);
 

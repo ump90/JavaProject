@@ -28,7 +28,7 @@ public class DishController {
 
     @GetMapping("/{id}")
     public CommonReturn<?> getById(@PathVariable Long id) {
-        return dishDtoService.getByIdwithFlavor(id);
+        return dishDtoService.getByIdWithFlavor(id);
     }
 
     @PutMapping
@@ -37,8 +37,8 @@ public class DishController {
     }
 
     @GetMapping("/list")
-    public CommonReturn<?> getByCategoryId(@RequestParam Long categoryId) {
-        return dishDtoService.getByCategoryId(categoryId);
+    public CommonReturn<?> getByCategoryId(@RequestParam Long categoryId, @RequestParam Integer status) {
+        return dishDtoService.getByCategoryId(categoryId,status);
     }
 
 }

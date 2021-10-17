@@ -9,40 +9,43 @@ import java.time.LocalDateTime;
 
 /**
  * @author UMP90
- * @date 2021/10/16
+ * @date 2021/10/14
  */
 @Data
-@TableName("setmeal_dish")
-public class SetmealDish {
-    @JsonSerialize(using = ToStringSerializer.class)
+public class AddressBook {
     @TableId(type = IdType.ASSIGN_ID)
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
     @JsonSerialize(using = ToStringSerializer.class)
-    private Long setmealId;
-    private String dishId;
-    private String name;
-    private Double price;
-    private Integer copies;
-    private Integer sort;
-
-    @JsonSerialize(using = ToStringSerializer.class)
-    @TableField(fill = FieldFill.INSERT_UPDATE)
-    private LocalDateTime createTime;
+    private Long userId;
+    private String consignee;
+    private String sex;
+    private String phone;
+    private String provinceCode;
+    private String provinceName;
+    private String cityCode;
+    private String cityName;
+    private String districtCode;
+    private String districtName;
+    private String detail;
+    private String label;
+    private Integer isDefault;
+    @TableLogic
+    private String isDeleted;
 
     @JsonSerialize(using = ToStringSerializer.class)
     @TableField(fill = FieldFill.INSERT)
+    private LocalDateTime createTime;
+
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    @JsonSerialize(using = ToStringSerializer.class)
     private LocalDateTime updateTime;
 
     @JsonSerialize(using = ToStringSerializer.class)
-    @TableField(fill = FieldFill.INSERT_UPDATE)
+    @TableField(fill = FieldFill.INSERT)
     private Long createUser;
 
     @JsonSerialize(using = ToStringSerializer.class)
-    @TableField(fill = FieldFill.INSERT)
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private Long updateUser;
-
-    @TableLogic
-    private Integer isDeleted;
-
-
 }

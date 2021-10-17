@@ -50,22 +50,63 @@ public class SetmealDtoImpl implements SetmealDtoService {
     public CommonReturn<?> page(Integer page, Integer pageSize, String name) {
         LambdaQueryWrapper<Setmeal> lambdaQueryWrapper = new LambdaQueryWrapper<>();
         Page<Setmeal> setmealPage = new Page<>(page, pageSize);
-        Page<SetmealDto> setmealDtoPage=new Page<>();
+        Page<SetmealDto> setmealDtoPage = new Page<>();
         lambdaQueryWrapper.like(StringUtils.isNotBlank(name), Setmeal::getName, name);
         lambdaQueryWrapper.orderByDesc(Setmeal::getUpdateTime);
-        setmealService.page(setmealPage,lambdaQueryWrapper);
-        List<Setmeal> setmealList=setmealPage.getRecords();
+        setmealService.page(setmealPage, lambdaQueryWrapper);
+        List<Setmeal> setmealList = setmealPage.getRecords();
         List<SetmealDto> setmealDtos = new ArrayList<>();
         setmealList.forEach(setmeal -> {
             Long categoryId = setmeal.getCategoryId();
             String categoryName = categoryService.getById(categoryId).getName();
-            SetmealDto setmealDto=new SetmealDto();
-            BeanUtils.copyProperties(setmeal,setmealDto);
+            SetmealDto setmealDto = new SetmealDto();
+            BeanUtils.copyProperties(setmeal, setmealDto);
             setmealDto.setCategoryName(categoryName);
             setmealDtos.add(setmealDto);
         });
-        BeanUtils.copyProperties(setmealPage,setmealDtoPage,"records");
+        BeanUtils.copyProperties(setmealPage, setmealDtoPage, "records");
         setmealDtoPage.setRecords(setmealDtos);
         return CommonReturn.success(setmealDtoPage);
     }
+
+    @Override
+    @Transactional
+    public CommonReturn<?> deleteByIds(List<Long> ids) {
+        LambdaQueryWrapper<Setmeal> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.in(Setmeal::getId, ids).eq(Setmeal::getStatus, 1);
+        if (setmealService.count(lambdaQueryWrapper) > 0) {
+            return CommonReturn.error("有套餐未被禁用");
+        } else {
+            setmealService.removeByIds(ids);
+            LambdaQueryWrapper<SetmealDish> setmealDishLambdaQueryWrapper = new LambdaQueryWrapper<>();
+            setmealDishLambdaQueryWrapper.in(SetmealDish::getDishId, ids);
+            setmealDishService.remove(setmealDishLambdaQueryWrapper);
+            return CommonReturn.success("套餐删除成功");
+        }
+
+    }
+
+    @Override
+    public CommonReturn<?> updateStatus(List<Long> ids, Integer status) {
+        LambdaQueryWrapper<Setmeal> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.in(Setmeal::getId, ids);
+        List<Setmeal> setmealList = setmealService.list(lambdaQueryWrapper);
+        setmealList.forEach(
+                setmeal -> {
+                    setmeal.setStatus(status);
+                }
+        );
+        setmealService.updateBatchById(setmealList);
+        return CommonReturn.success("更新状态成功");
+    }
+
+    @Override
+    public CommonReturn<?> getByCategoryId(Long categoryId, Integer status) {
+        LambdaQueryWrapper<Setmeal> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.eq(categoryId != null, Setmeal::getCategoryId, categoryId)
+                          .eq(status!=null,Setmeal::getStatus,status);
+        List<Setmeal> setmealList= setmealService.list(lambdaQueryWrapper);
+        return CommonReturn.success(setmealList);
+    }
 }
+
