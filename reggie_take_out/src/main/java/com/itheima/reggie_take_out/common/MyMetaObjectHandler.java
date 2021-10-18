@@ -16,30 +16,28 @@ import java.time.LocalDateTime;
 public class MyMetaObjectHandler implements MetaObjectHandler {
     @Override
     public void insertFill(MetaObject metaObject) {
-        metaObject.setValue("createTime",LocalDateTime.now());
+        metaObject.setValue("createTime", LocalDateTime.now());
 
         if (metaObject.hasSetter("updateTime")) {
-            metaObject.setValue("updateTime",LocalDateTime.now());
+            metaObject.setValue("updateTime", LocalDateTime.now());
         }
-        if (metaObject.hasSetter("createUser")){
-            metaObject.setValue("createUser",BaseContext.getId());
+        if (metaObject.hasSetter("createUser")) {
+            metaObject.setValue("createUser", BaseContext.getId());
         }
-        if (metaObject.hasSetter("updateUser")){
-            metaObject.setValue("",BaseContext.getId());
+        if (metaObject.hasSetter("updateUser")) {
+            metaObject.setValue("updateUser", BaseContext.getId());
         }
-
-
 
 
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
-        if(metaObject.hasSetter("updateTime")){
-            metaObject.setValue("updateTime",LocalDateTime.now());
+        if (metaObject.hasSetter("updateTime")) {
+            metaObject.setValue("updateTime", LocalDateTime.now());
         }
-        if(metaObject.hasSetter("updateUser")){
-            metaObject.setValue("updateUser",BaseContext.getId());
+        if (metaObject.hasSetter("updateUser")) {
+            metaObject.setValue("updateUser", BaseContext.getId());
         }
 
 

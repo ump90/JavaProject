@@ -14,22 +14,22 @@ import java.time.LocalDateTime;
 @Data
 @TableName("shopping_cart")
 public class ShoppingCart {
-    @JsonSerialize(using = ToStringSerializer.class)
+
     @TableId(type = IdType.ASSIGN_ID)
     private Long id;
 
     private String name;
     private String image;
-    @JsonSerialize(using = ToStringSerializer.class)
+
     private Long userId;
-    @JsonSerialize(using = ToStringSerializer.class)
+
     private Long dishId;
-    @JsonSerialize(using = ToStringSerializer.class)
+
     private Long setmealId;
     private String dishFlavor;
     private Integer number;
     private Double amount;
-    @JsonSerialize(using = ToStringSerializer.class)
+
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 }

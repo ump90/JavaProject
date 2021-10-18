@@ -2,14 +2,17 @@ package com.itheima.reggie_take_out.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.itheima.reggie_take_out.common.BaseContext;
 import com.itheima.reggie_take_out.common.CommonReturn;
 import com.itheima.reggie_take_out.entity.*;
 import com.itheima.reggie_take_out.mapper.OrderMapper;
 import com.itheima.reggie_take_out.service.*;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;
@@ -33,7 +36,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     @Autowired
     private OrderDetailService orderDetailService;
 
-
+    @Transactional
     @Override
     public CommonReturn<?> submitOrder(String remark, Integer payMethod, Long addressBookId) {
         Long userId = BaseContext.getId();
@@ -81,11 +84,24 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         Double orderAmount = Double.parseDouble(numberFormat.format(totalMoney[0]));
         Order order = new Order();
         StringBuilder stringBuilder = new StringBuilder();
+        String provinceName = addressBook.getProvinceName();
+        String cityName = addressBook.getCityName();
+        String districtName = addressBook.getDistrictName();
+        String detail = addressBook.getDetail();
+        if (!StringUtils.isBlank(provinceName)) {
+            stringBuilder.append(provinceName);
+        }
+        if (!StringUtils.isBlank(cityName)) {
+            stringBuilder.append(cityName);
+        }
 
-        stringBuilder.append(addressBook.getProvinceName() != null ? addressBook.getProvinceName() : null)
-                .append(addressBook.getCityName() != null ? addressBook.getCityName() : numberFormat)
-                .append(addressBook.getDistrictName() != null ? addressBook.getCityName() : numberFormat)
-                .append(addressBook.getDetail() != null ? addressBook.getDetail() : null);
+        if (!StringUtils.isBlank(districtName)) {
+            stringBuilder.append(districtName);
+        }
+        if ((!StringUtils.isBlank(detail))) {
+            stringBuilder.append(detail);
+        }
+
         order.setAddress(stringBuilder.toString());
         order.setAddressBookId(addressBook.getId());
         order.setAmount(orderAmount);
@@ -95,7 +111,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         order.setPhone(user.getPhone());
         order.setRemark(remark);
         order.setOrderTime(LocalDateTime.now());
-        order.setCheckOutTime(LocalDateTime.now());
+        order.setCheckoutTime(LocalDateTime.now());
         order.setStatus(2);
         order.setUserId(userId);
         order.setUserName(user.getName());
@@ -108,5 +124,23 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
 
         return CommonReturn.success("下单成功");
 
+    }
+
+    @Override
+    public CommonReturn<?> pageOrder(Integer page, Integer pageSize, LocalDateTime beginTime, LocalDateTime endTime, String number) {
+        Page<Order> orderPage = new Page<>(page, pageSize);
+        LambdaQueryWrapper<Order> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.between((beginTime != null && endTime != null), Order::getCheckoutTime, beginTime, endTime);
+        lambdaQueryWrapper.like(number != null, Order::getNumber, number);
+        this.page(orderPage, lambdaQueryWrapper);
+        return CommonReturn.success(orderPage);
+    }
+
+    @Override
+    public CommonReturn<?> updateStatus(Long id, Integer status) {
+        Order order = this.getById(id);
+        order.setStatus(status);
+        this.updateById(order);
+        return CommonReturn.success("更新状态成功");
     }
 }

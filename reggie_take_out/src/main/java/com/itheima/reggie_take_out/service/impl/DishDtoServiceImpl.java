@@ -3,14 +3,9 @@ package com.itheima.reggie_take_out.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.itheima.reggie_take_out.common.CommonReturn;
-import com.itheima.reggie_take_out.entity.Category;
-import com.itheima.reggie_take_out.entity.Dish;
+import com.itheima.reggie_take_out.entity.*;
 import com.itheima.reggie_take_out.dto.DishDto;
-import com.itheima.reggie_take_out.entity.DishFlavor;
-import com.itheima.reggie_take_out.service.CategoryService;
-import com.itheima.reggie_take_out.service.DishDtoService;
-import com.itheima.reggie_take_out.service.DishFlavorService;
-import com.itheima.reggie_take_out.service.DishService;
+import com.itheima.reggie_take_out.service.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +29,10 @@ public class DishDtoServiceImpl implements DishDtoService {
     private DishFlavorService dishFlavorService;
     @Autowired
     private CategoryService categoryService;
+    @Autowired
+    private SetmealDishService setmealDishService;
+    @Autowired
+    private SetmealService setmealService;
 
     @Override
     public CommonReturn<?> save(DishDto dishDto) {
@@ -124,16 +123,16 @@ public class DishDtoServiceImpl implements DishDtoService {
     public CommonReturn<?> getByCategoryId(Long categoryId, Integer status) {
         LambdaQueryWrapper<Dish> lambdaQueryWrapper = new LambdaQueryWrapper<>();
         lambdaQueryWrapper.eq(categoryId != null, Dish::getCategoryId, categoryId);
-        lambdaQueryWrapper.eq(Dish::getStatus, status);
+        lambdaQueryWrapper.eq(status != null, Dish::getStatus, status);
         lambdaQueryWrapper.orderByAsc(Dish::getSort).orderByDesc(Dish::getUpdateTime);
         List<Dish> dishList = dishService.list(lambdaQueryWrapper);
 
         ArrayList<DishDto> dishDtoArrayList = new ArrayList<>();
 
         dishList.forEach(dish -> {
-            DishDto dishDto=new DishDto();
-            BeanUtils.copyProperties(dish,dishDto);
-            Category category= categoryService.getById(dish.getCategoryId());
+            DishDto dishDto = new DishDto();
+            BeanUtils.copyProperties(dish, dishDto);
+            Category category = categoryService.getById(dish.getCategoryId());
             dishDto.setCategoryName(category.getName());
             LambdaQueryWrapper<DishFlavor> dishFlavorLambdaQueryWrapper = new LambdaQueryWrapper<>();
             dishFlavorLambdaQueryWrapper.eq(DishFlavor::getDishId, dish.getId());
@@ -145,5 +144,74 @@ public class DishDtoServiceImpl implements DishDtoService {
 
         return CommonReturn.success(dishDtoArrayList);
 
+    }
+
+    @Override
+    public CommonReturn<?> deleteDish(List<Long> ids) {
+
+        for (Long dishId : ids) {
+            Dish dish = dishService.getById(dishId);
+            if (dish.getStatus() == 1) {
+                return CommonReturn.error(dish.getName() + "未被停售，不能删除");
+            }
+            LambdaQueryWrapper<SetmealDish> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+            lambdaQueryWrapper.eq(SetmealDish::getDishId, dishId);
+            List<SetmealDish> list = setmealDishService.list(lambdaQueryWrapper);
+
+            if (list.size() > 0) {
+                StringBuilder stringBuilder = new StringBuilder();
+                list.forEach(
+                        setmealDish -> {
+                            Setmeal setmeal = setmealService.getById(setmealDish.getSetmealId());
+                            stringBuilder.append(setmeal.getName());
+                            stringBuilder.append(" ");
+
+                        }
+                );
+
+                return CommonReturn.error("当前菜品包含在" + stringBuilder + "中，不能删除");
+            }
+        }
+        if (dishService.removeByIds(ids)) {
+            return CommonReturn.success("菜品删除成功");
+        } else {
+            return CommonReturn.error("菜品删除失败");
+        }
+
+
+    }
+
+    @Override
+    public CommonReturn<?> setDishStatus(List<Long> ids, Integer status) {
+        if (status == 1) {
+            List<Dish> dishList = dishService.listByIds(ids);
+            dishList.forEach(dish -> dish.setStatus(status));
+            dishService.updateBatchById(dishList);
+        }
+
+        if (status == 0) {
+            List<Dish> dishList = dishService.listByIds(ids);
+            //检查套餐是否包含菜品
+            for (Dish dish : dishList) {
+                Long id = dish.getId();
+                LambdaQueryWrapper<SetmealDish> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+                lambdaQueryWrapper.eq(SetmealDish::getDishId, id);
+                List<SetmealDish> list = setmealDishService.list(lambdaQueryWrapper);
+                if (list.size() > 0) {
+                    StringBuilder stringBuilder = new StringBuilder();
+
+                    for (SetmealDish setmealDish : list) {
+                        Setmeal setmeal = setmealService.getById(setmealDish.getSetmealId());
+                        stringBuilder.append(setmeal.getName());
+                        stringBuilder.append(" ");
+                    }
+                    return CommonReturn.error("当前菜品包含在" + stringBuilder + "中，不能删除");
+                }
+            }
+            dishList.forEach(dish -> dish.setStatus(status));
+            dishService.updateBatchById(dishList);
+
+        }
+        return CommonReturn.success("更新菜品状态成功");
     }
 }

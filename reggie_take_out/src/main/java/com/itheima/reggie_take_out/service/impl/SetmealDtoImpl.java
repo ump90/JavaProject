@@ -104,9 +104,34 @@ public class SetmealDtoImpl implements SetmealDtoService {
     public CommonReturn<?> getByCategoryId(Long categoryId, Integer status) {
         LambdaQueryWrapper<Setmeal> lambdaQueryWrapper = new LambdaQueryWrapper<>();
         lambdaQueryWrapper.eq(categoryId != null, Setmeal::getCategoryId, categoryId)
-                          .eq(status!=null,Setmeal::getStatus,status);
-        List<Setmeal> setmealList= setmealService.list(lambdaQueryWrapper);
+                .eq(status != null, Setmeal::getStatus, status);
+        List<Setmeal> setmealList = setmealService.list(lambdaQueryWrapper);
         return CommonReturn.success(setmealList);
+    }
+
+    @Override
+    public CommonReturn<?> getSetmealById(Long id) {
+        Setmeal setmeal = setmealService.getById(id);
+        SetmealDto setmealDto = new SetmealDto();
+        BeanUtils.copyProperties(setmeal, setmealDto);
+        LambdaQueryWrapper<SetmealDish> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.eq(SetmealDish::getSetmealId, id);
+        List<SetmealDish> list = setmealDishService.list(lambdaQueryWrapper);
+        setmealDto.setSetmealDishes(list);
+        return CommonReturn.success(setmealDto);
+    }
+
+    @Override
+    @Transactional
+    public CommonReturn<?> updateSetmeal(SetmealDto setmealDto) {
+        setmealService.updateById(setmealDto);
+        LambdaQueryWrapper<SetmealDish> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.eq(SetmealDish::getSetmealId, setmealDto.getId());
+        setmealDishService.remove(lambdaQueryWrapper);
+        List<SetmealDish> setmealDishList = setmealDto.getSetmealDishes();
+        setmealDishList.forEach(setmealDish -> setmealDish.setSetmealId(setmealDto.getId()));
+        setmealDishService.saveBatch(setmealDishList);
+        return CommonReturn.success("更新成功");
     }
 }
 

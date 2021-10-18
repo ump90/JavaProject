@@ -15,15 +15,15 @@ import lombok.Data;
 @TableName("order_detail")
 public class OrderDetail {
     @TableId(type = IdType.ASSIGN_ID)
-    @JsonSerialize(using = ToStringSerializer.class)
+
     private Long id;
     private String name;
     private String image;
-    @TableId(type = IdType.ASSIGN_ID)
+
     private Long orderId;
-    @TableId(type = IdType.ASSIGN_ID)
+
     private Long dishId;
-    @TableId(type = IdType.ASSIGN_ID)
+
     private Long setmealId;
     private String dishFlavor;
     private Integer number;

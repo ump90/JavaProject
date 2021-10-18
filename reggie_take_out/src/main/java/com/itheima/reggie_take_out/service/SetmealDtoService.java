@@ -11,9 +11,17 @@ import java.util.List;
  */
 
 public interface SetmealDtoService {
-    public CommonReturn<?> saveWithDish(SetmealDto setmealDto);
-    public CommonReturn<?> page(Integer page, Integer pageSize, String name);
-    public CommonReturn<?> deleteByIds(List<Long> ids);
-    public CommonReturn<?> updateStatus(List<Long> ids,Integer status);
-    public CommonReturn<?> getByCategoryId(Long categoryId, Integer status);
+    CommonReturn<?> saveWithDish(SetmealDto setmealDto);
+
+    CommonReturn<?> page(Integer page, Integer pageSize, String name);
+
+    CommonReturn<?> deleteByIds(List<Long> ids);
+
+    CommonReturn<?> updateStatus(List<Long> ids, Integer status);
+
+    CommonReturn<?> getByCategoryId(Long categoryId, Integer status);
+
+    CommonReturn<?> getSetmealById(Long id);
+
+    CommonReturn<?> updateSetmeal(SetmealDto setmealDto);
 }

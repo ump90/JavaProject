@@ -14,9 +14,9 @@ import java.time.LocalDateTime;
 @Data
 public class AddressBook {
     @TableId(type = IdType.ASSIGN_ID)
-    @JsonSerialize(using = ToStringSerializer.class)
+
     private Long id;
-    @JsonSerialize(using = ToStringSerializer.class)
+
     private Long userId;
     private String consignee;
     private String sex;
@@ -33,19 +33,19 @@ public class AddressBook {
     @TableLogic
     private String isDeleted;
 
-    @JsonSerialize(using = ToStringSerializer.class)
+
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
     @TableField(fill = FieldFill.INSERT_UPDATE)
-    @JsonSerialize(using = ToStringSerializer.class)
+
     private LocalDateTime updateTime;
 
-    @JsonSerialize(using = ToStringSerializer.class)
+
     @TableField(fill = FieldFill.INSERT)
     private Long createUser;
 
-    @JsonSerialize(using = ToStringSerializer.class)
+
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Long updateUser;
 }

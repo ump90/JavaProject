@@ -14,10 +14,10 @@ import java.time.LocalDateTime;
 @Data
 @TableName("setmeal_dish")
 public class SetmealDish {
-    @JsonSerialize(using = ToStringSerializer.class)
+
     @TableId(type = IdType.ASSIGN_ID)
     private Long id;
-    @JsonSerialize(using = ToStringSerializer.class)
+
     private Long setmealId;
     private String dishId;
     private String name;
@@ -25,19 +25,19 @@ public class SetmealDish {
     private Integer copies;
     private Integer sort;
 
-    @JsonSerialize(using = ToStringSerializer.class)
+
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime createTime;
 
-    @JsonSerialize(using = ToStringSerializer.class)
+
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime updateTime;
 
-    @JsonSerialize(using = ToStringSerializer.class)
+
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Long createUser;
 
-    @JsonSerialize(using = ToStringSerializer.class)
+
     @TableField(fill = FieldFill.INSERT)
     private Long updateUser;
 

@@ -13,10 +13,12 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MybatisplusConfig {
     @Bean
-    public MybatisPlusInterceptor mybatisPlusInterceptor(){
-        MybatisPlusInterceptor mybatisPlusInterceptor=new MybatisPlusInterceptor();
+    public MybatisPlusInterceptor mybatisPlusInterceptor() {
+        MybatisPlusInterceptor mybatisPlusInterceptor = new MybatisPlusInterceptor();
         mybatisPlusInterceptor.addInnerInterceptor(new BlockAttackInnerInterceptor());
         mybatisPlusInterceptor.addInnerInterceptor(new PaginationInnerInterceptor());
         return mybatisPlusInterceptor;
     }
+
+
 }

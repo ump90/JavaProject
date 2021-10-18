@@ -12,7 +12,7 @@ import lombok.Data;
 @Data
 public class User {
     @TableId
-    @JsonSerialize(using = ToStringSerializer.class)
+
     private Long id;
 
     private String name;

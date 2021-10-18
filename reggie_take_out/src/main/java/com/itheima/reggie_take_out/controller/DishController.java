@@ -6,6 +6,8 @@ import com.itheima.reggie_take_out.service.DishDtoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * @author UMP90
  * @date 2021/10/15
@@ -37,8 +39,18 @@ public class DishController {
     }
 
     @GetMapping("/list")
-    public CommonReturn<?> getByCategoryId(@RequestParam Long categoryId, @RequestParam Integer status) {
-        return dishDtoService.getByCategoryId(categoryId,status);
+    public CommonReturn<?> getByCategoryId(@RequestParam Long categoryId, @RequestParam(required = false) Integer status) {
+        return dishDtoService.getByCategoryId(categoryId, status);
+    }
+
+    @DeleteMapping
+    public CommonReturn<?> deleteDish(@RequestParam List<Long> ids) {
+        return dishDtoService.deleteDish(ids);
+    }
+
+    @PostMapping("/status/{status}")
+    public CommonReturn<?> setDishStatus(@RequestParam List<Long> ids, @PathVariable Integer status) {
+        return dishDtoService.setDishStatus(ids, status);
     }
 
 }

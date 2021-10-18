@@ -42,6 +42,15 @@ public class SetmealController {
     @GetMapping("/list")
     public CommonReturn<?> getByCategoryId(@RequestParam Long categoryId, @RequestParam Integer status) {
         return setmealDtoService.getByCategoryId(categoryId, status);
+    }
 
+    @GetMapping("/{id}")
+    public CommonReturn<?> getSetmealById(@PathVariable Long id) {
+        return setmealDtoService.getSetmealById(id);
+    }
+
+    @PutMapping
+    public CommonReturn<?> updateSetmeal(@RequestBody SetmealDto setmealDto) {
+        return setmealDtoService.updateSetmeal(setmealDto);
     }
 }
