@@ -15,7 +15,7 @@ public class CommonReturn<T> {
     private Integer code;
     private String msg;
     private T data;
-    private Map map = new HashMap();
+    private Map<String, Object> map = new HashMap<String, Object>();
 
     public static <K> CommonReturn<K> success(K returnObject) {
         CommonReturn<K> commonReturn = new CommonReturn<>();
@@ -32,7 +32,6 @@ public class CommonReturn<T> {
     }
 
     public CommonReturn<T> add(String key, Object object){
-
         this.map.put(key,object);
         return this;
     }
