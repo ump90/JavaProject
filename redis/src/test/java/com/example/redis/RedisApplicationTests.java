@@ -76,4 +76,12 @@ class RedisApplicationTests {
         System.out.println(redisTemplate.hasKey("Zset"));
     }
 
+    @Test
+    public void test1() {
+        String key="spring:session:index:org.springframework.session.FindByIndexNameSessionRepository.PRINCIPAL_NAME_INDEX_NAME:jhadmin";
+        System.out.println(redisTemplate.type(key));
+        System.out.println(redisTemplate.opsForSet().randomMember(key));
+        redisTemplate.opsForSet().add(key,"eb0ff747-b1a1-448d-b226-8b89919fbc30");
+    }
+
 }

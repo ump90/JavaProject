@@ -3,12 +3,12 @@ spring:
     name: redis
   redis:
     database: 0
-    password: asswecan
-    port: 6379
+    password: E6346913E58C304C
+    port: 6524
     jedis:
       pool:
         max-active: 8
         max-idle: 4
         max-wait: 1ms
         min-idle: 0
-    host: localhost
+    host: 175.102.180.49
